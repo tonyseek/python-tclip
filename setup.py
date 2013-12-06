@@ -30,4 +30,5 @@ setup(
     url="https://github.com/tonyseek/python-tclip",
     py_modules=["tclip"],
     ext_modules=[tclip_ext],
+    install_requires=["cffi"],
 )
