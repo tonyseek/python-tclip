@@ -249,3 +249,18 @@ int tclip(std::string source_path, std::string dest_path,
 
     return 0;
 }
+
+
+extern "C"
+{
+    int cffi_tclip(char *source_path, char *dest_path, int dest_width,
+                   int dest_height, char *config_path)
+    {
+        std::string _source_path(source_path);
+        std::string _dest_path(dest_path);
+        std::string _config_path(config_path);
+
+        return tclip(_source_path, _dest_path, dest_width, dest_height,
+                     _config_path);
+    }
+}
