@@ -1,5 +1,5 @@
 from subprocess import check_output
-from setuptools import setup, find_packages, Extension
+from setuptools import setup, Extension
 
 
 def pkgconfig(package, **kwargs):
@@ -15,7 +15,7 @@ def pkgconfig(package, **kwargs):
 
 tclip_ext = Extension(
     name="_tclip",
-    sources=["tclip/_tclip.cpp"],
+    sources=["tclip.cpp"],
     language="c++",
     **pkgconfig("opencv")
 )
@@ -28,6 +28,6 @@ setup(
     version="0.1.0",
     zip_safe=False,
     url="https://github.com/tonyseek/python-tclip",
-    packages=find_packages(),
+    py_modules=["tclip"],
     ext_modules=[tclip_ext],
 )
