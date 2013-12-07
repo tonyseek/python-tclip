@@ -3,5 +3,10 @@
 *.log
 *.so
 *.egg-info
+
+.cache
+.coverage
+.tox
+
 dist
 __pycache__
