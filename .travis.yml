@@ -1,0 +1,20 @@
+language: python
+python:
+  - "2.7"
+  - "3.3"
+  - "pypy"
+before_install:
+  - "sudo add-apt-repository -y ppa:philip5/extra"
+  - "sudo apt-get -qq update"
+  - "sudo apt-get -qq install build-essential pkg-config libcv-dev libopencv2.4-dev libopencv-nonfree-dev libopencv-photo-dev libopencv-contrib-dev"
+  - "pip install pytest>=2.4.2 -U --use-mirrors"
+  - "pip install pytest-cov pytest-pep8 Wand coveralls --use-mirrors"
+install:
+  - "pip install . --use-mirrors"
+script: "py.test"
+after_success:
+  coveralls
+branches:
+  only:
+    - master
+    - develop
