@@ -154,7 +154,6 @@ int tclip(std::string source_path, std::string dest_path,
     int clip_right = 0;
 
     int result = 0;
-    int param;
 
     if (source_path == "")
     {
