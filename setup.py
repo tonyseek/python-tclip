@@ -10,4 +10,5 @@ setup(
     url="https://github.com/tonyseek/python-tclip",
     py_modules=["tclip"],
     install_requires=["cffi"],
+    package_data={"": ["*.cpp"]},
 )
