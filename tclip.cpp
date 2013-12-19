@@ -5,7 +5,6 @@
 #include <opencv2/calib3d/calib3d.hpp>
 #include <opencv2/imgproc/imgproc.hpp>
 #include <opencv2/features2d/features2d.hpp>
-#include <opencv2/nonfree/nonfree.hpp>
 
 #include <iostream>
 #include <map>
@@ -68,8 +67,7 @@ int detectCharacter(cv::Mat image)
     int slice_num = section_num.size() / slice_total;
     int slice_counter = 0;
 
-    cv::initModule_nonfree();
-    detector = cv::FeatureDetector::create("SURF");
+    detector = cv::FeatureDetector::create("FAST");
 
     if (detector.empty())
     {
