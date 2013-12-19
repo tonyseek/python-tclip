@@ -1,4 +1,4 @@
-from os.path import exists
+from os.path import exists, dirname, realpath
 from subprocess import check_output
 
 import cffi
@@ -8,6 +8,7 @@ CONFIG_PATH = [
     "/usr/local/share/OpenCV/haarcascades/haarcascade_frontalface_alt.xml",
     "/usr/share/opencv/haarcascades/haarcascade_frontalface_alt.xml",
 ]
+CURRENT_DIR = dirname(realpath(__file__))
 
 
 def pkgconfig(package, **kwargs):
@@ -29,7 +30,8 @@ def setup_ffi():
     int cffi_tclip(char *source_path, char *dest_path, int dest_width,
                    int dest_height, char *config_path);
     """)
-    interface = ffi.verify(sources=["tclip.cpp"], language="c++",
+    interface = ffi.verify(sources=[CURRENT_DIR + "/tclip.cpp"],
+                           language="c++",
                            **pkgconfig("opencv"))
     return interface
 
