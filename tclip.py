@@ -24,16 +24,13 @@ def pkgconfig(package, **kwargs):
     return {k: [str(i) for i in v]for k, v in kwargs.items()}
 
 
-def setup_ffi():
-    ffi = cffi.FFI()
-    ffi.cdef("""
-    int cffi_tclip(char *source_path, char *dest_path, int dest_width,
-                   int dest_height, char *config_path);
-    """)
-    interface = ffi.verify(sources=[CURRENT_DIR + "/tclip.cpp"],
-                           language="c++",
-                           **pkgconfig("opencv"))
-    return interface
+ffi = cffi.FFI()
+ffi.cdef("""
+int cffi_tclip(char *source_path, char *dest_path, int dest_width,
+               int dest_height, char *config_path);
+""")
+impl = ffi.verify(sources=[CURRENT_DIR + "/tclip.cpp"], language="c++",
+                  **pkgconfig("opencv"))
 
 
 def find_exists_path(paths, default=None):
@@ -54,7 +51,7 @@ class TClip(object):
         self.config_path = config_path or find_exists_path(CONFIG_PATH)
         self.width = width
         self.height = height
-        self.impl = setup_ffi()
+        self.impl = impl
 
     def process_file(self, source_path, dest_path):
         if not self.config_path:
