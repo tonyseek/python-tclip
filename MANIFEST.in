@@ -1,0 +1,7 @@
+include README.rst tox.ini
+include tclip.cpp
+exclude *.pyc
+recursive-include tests *
+recursive-exclude tests *.pyc
+recursive-exclude tests *.pyo
+prune __pycache__
