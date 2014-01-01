@@ -35,7 +35,7 @@ setup(
     name="python-tclip",
     author="Jiangge Zhang",
     author_email="tonyseek@gmail.com",
-    version="0.1.0",
+    version="0.1.1",
     zip_safe=False,
     url="https://github.com/tonyseek/python-tclip",
     py_modules=["tclip"],
